@@ -1,0 +1,24 @@
+plugins {
+    id 'java'
+}
+
+group 'com.acgustafson'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'ch.qos.logback:logback-classic:1.2.3'
+
+    implementation 'org.apache.activemq:artemis-core-client:2.31.0'
+    implementation 'org.apache.activemq:artemis-jms-client:2.31.0'
+    implementation 'org.apache.activemq:artemis-server:2.31.0'
+    implementation 'org.apache.activemq:artemis-jms-server:2.31.0'
+
+//    implementation 'org.apache.activemq:artemis-core-client:2.19.1'
+//    implementation 'org.apache.activemq:artemis-jms-client:2.19.1'
+//    implementation 'org.apache.activemq:artemis-server:2.19.1'
+//    implementation 'org.apache.activemq:artemis-jms-server:2.19.1'
+}
