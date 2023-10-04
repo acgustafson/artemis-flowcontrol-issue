@@ -9,7 +9,7 @@ public class JMSConfiguration {
         ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory("tcp://" + brokerHostname + "?connectionTTL=300000");
         connectionFactory.setCompressLargeMessage(false);
 
-//        connectionFactory.setProducerWindowSize(-1);
+        connectionFactory.setProducerWindowSize(-1);
         connectionFactory.setBlockOnDurableSend(false);
         connectionFactory.setReconnectAttempts(-1);
         connectionFactory.setRetryInterval(1000);

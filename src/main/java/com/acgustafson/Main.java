@@ -33,26 +33,24 @@ public class Main {
 
     private static void createEmbeddedBrokers() throws InterruptedException {
         System.out.println("creating 2 embedded brokers");
-        ThreadPoolExecutor brokerPool = (ThreadPoolExecutor) Executors.newFixedThreadPool(2);
-        brokerPool.submit(new Server("broker1.xml"), "broker1");
-        brokerPool.submit(new Server("broker2.xml"), "broker2");
+        new Server("broker1.xml").start();
+        new Server("broker2.xml").start();
         Thread.sleep(5000); // let the brokers finish starting
     }
 
     private static void createStatsConsumer() {
         // Create a wildcard consumer to print some stats for us
         System.out.println("creating stats consumer");
-        Thread statsConsumer = new Thread(new Client("StatsConsumer1", true, BROKER1_HOSTNAME, true), "StatsConsumer1");
+        Client statsConsumer = new Client("StatsConsumer1", true, BROKER1_HOSTNAME, true);
         statsConsumer.start();
     }
 
     private static void createProducers() {
         // Create our producers
         System.out.println("creating producers");
-        ThreadPoolExecutor producerThreadPool = (ThreadPoolExecutor) Executors.newFixedThreadPool(80);
-        //        ThreadPoolExecutor producerThreadPool = (ThreadPoolExecutor) Executors.newFixedThreadPool(20);
         for (int i=0; i<numOfProducers; i++) {
-            producerThreadPool.submit(new Client(String.valueOf(i), false, getBrokerName(i), false));
+            new Client(String.valueOf(i), false, getBrokerName(i), false).start();
+            System.out.println("created producer " + i);
         }
     }
 
@@ -61,7 +59,7 @@ public class Main {
         System.out.println("creating consumers");
         ThreadPoolExecutor consumerThreadPool = (ThreadPoolExecutor) Executors.newFixedThreadPool(4);
         for (int i=0; i<numOfConsumers; i++) {
-            consumerThreadPool.submit(new Client(String.valueOf(i), true, getBrokerName(i) ,false), "wildconsumer" + i);
+            new Client(String.valueOf(i), true, getBrokerName(i) ,false).start();
         }
     }
 

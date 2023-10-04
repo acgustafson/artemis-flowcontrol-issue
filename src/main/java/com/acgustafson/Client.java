@@ -20,7 +20,7 @@ import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class Client implements Runnable {
+public class Client {
     private final Logger   logger = LoggerFactory.getLogger(getClass());
     private final String   HELLO_TOPIC_NAME = "HelloTopic";
     private final String   clientId;
@@ -83,8 +83,7 @@ public class Client implements Runnable {
         }
     }
 
-    @Override
-    public void run() {
+    public void start() {
         if (consumeFromWildcard) {
             consumeFromWildcard();
             if (printStats) {

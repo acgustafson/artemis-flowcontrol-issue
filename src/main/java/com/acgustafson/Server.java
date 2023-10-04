@@ -9,7 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.util.Set;
 
-public class Server implements Runnable{
+public class Server {
     private final Logger logger = LoggerFactory.getLogger(getClass());
     String config;
     public Server(String configName) {
@@ -35,8 +35,7 @@ public class Server implements Runnable{
         logger.info("Started Embedded Broker " + server.getNodeID());
     }
 
-    @Override
-    public void run() {
+    public void start() {
         try {
             createBroker(this.config);
         } catch (Exception e) {

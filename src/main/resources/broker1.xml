@@ -190,6 +190,7 @@ under the License.
             <use-duplicate-detection>true</use-duplicate-detection>
             <message-load-balancing>ON_DEMAND</message-load-balancing>
             <max-hops>1</max-hops>
+<!--            <producer-window-size>1048576</producer-window-size>-->
             <discovery-group-ref discovery-group-name="bug-discovery-group"/>
          </cluster-connection>
       </cluster-connections>
